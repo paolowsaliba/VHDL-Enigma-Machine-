@@ -7,7 +7,7 @@ PACKAGE my_package IS
 	TYPE gear IS ARRAY (0 to 25) OF character_az;
 	TYPE gear_indices IS ARRAY(0 TO 2) OF INTEGER RANGE 0 TO 2;
 	TYPE gear_positions IS ARRAY(0 TO 2) OF integer_az;
-	
+
 	FUNCTION indexof (char : character_az; arr : gear; position : integer_az) RETURN character_az;
 END;
 

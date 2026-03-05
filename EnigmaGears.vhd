@@ -7,10 +7,9 @@ USE IEEE.NUMERIC_STD.ALL;
 USE WORK.MY_PACKAGE.ALL;
 ------------------------------------------------------------------------------
 ENTITY EnigmaGears IS
-	PORT(clk : IN STD_LOGIC;
-		input: IN character_az;
+	PORT(input: IN character_az;
 		gear_order: IN gear_indices;
-		gear_pos: BUFFER gear_positions;
+		gear_pos: IN gear_positions;
 		output: OUT character_az);
 END;
 ------------------------------------------------------------------------------
@@ -32,28 +31,15 @@ ARCHITECTURE arch OF EnigmaGears IS
 	TYPE gear_array IS ARRAY(0 TO 3) OF gear;
 	CONSTANT gears: gear_array:=(I, II, III, reflector);
 BEGIN
-	PROCESS(input, gear_order, gear_pos, clk)
-		VARIABLE tc1, tc2, tc3, tc4, tc5, tc6: character_az;
-	BEGIN
-		IF RISING_EDGE(clk) THEN
-		tc1 := gears(gear_order(0))((CHARACTER'POS(input)-65+gear_pos(0))mod 26);
-		tc2 := gears(gear_order(1))((CHARACTER'POS(tc1)-65+gear_pos(1))mod 26);
-		tc3 := gears(gear_order(2))((CHARACTER'POS(tc2)-65+gear_pos(2))mod 26);
-		tc4 := gears(3)((CHARACTER'POS(tc3)-65+gear_pos(0))mod 26);
-		tc5 := indexof(tc4, gears(gear_order(2)), gear_pos(2));
-		tc6 := indexof(tc5, gears(gear_order(1)), gear_pos(1));
-		output <= indexof(tc6, gears(gear_order(0)), gear_pos(0));
-		gear_pos(0) <= gear_pos(0)+1;
-		IF gear_pos(0) = 25 THEN
-			gear_pos(1) <= (gear_pos(1) + 1)MOD 26;
-		ELSE
-			gear_pos(1) <= gear_pos(1);
-		END IF;
-		IF (gear_pos(1) = 25 AND gear_pos(0) = 25) THEN
-			gear_pos(2) <= (gear_pos(2) + 1)MOD 26;
-		ELSE
-			gear_pos(2) <= gear_pos(2);
-		END IF;
-		END IF;
-	END PROCESS;
+	output <= 
+		indexof(
+		indexof(
+		indexof(
+		gears(3)((CHARACTER'POS(gears(gear_order(2))
+		((CHARACTER'POS(gears(gear_order(1))
+		((CHARACTER'POS(gears(gear_order(0))
+		((CHARACTER'POS(input)-65+gear_pos(0))mod 26))-65+gear_pos(1))mod 26))-65+gear_pos(2))mod 26))-65+gear_pos(0))mod 26)
+		, gears(gear_order(2)), gear_pos(2))
+		, gears(gear_order(1)), gear_pos(1))
+		, gears(gear_order(0)), gear_pos(0));
 END;
