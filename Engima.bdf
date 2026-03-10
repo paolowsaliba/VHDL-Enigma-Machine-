@@ -1,0 +1,302 @@
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+/*
+Copyright (C) 2025  Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Altera and sold by Altera or its authorized distributors.  Please
+refer to the Altera Software License Subscription Agreements 
+on the Quartus Prime software download page.
+*/
+(header "graphic" (version "1.4"))
+(pin
+	(input)
+	(rect 0 128 168 144)
+	(text "INPUT" (rect 125 0 153 9)(font "Arial" (font_size 6)))
+	(text "inp[1]" (rect 5 0 33 10)(font "DejaVu Sans Condensed" ))
+	(pt 168 8)
+	(drawing
+		(line (pt 84 12)(pt 109 12))
+		(line (pt 84 4)(pt 109 4))
+		(line (pt 113 8)(pt 168 8))
+		(line (pt 84 12)(pt 84 4))
+		(line (pt 109 4)(pt 113 8))
+		(line (pt 109 12)(pt 113 8))
+	)
+	(text "VCC" (rect 128 7 148 16)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect 0 112 168 128)
+	(text "INPUT" (rect 125 0 153 9)(font "Arial" (font_size 6)))
+	(text "inp[0]" (rect 5 0 33 10)(font "DejaVu Sans Condensed" ))
+	(pt 168 8)
+	(drawing
+		(line (pt 84 12)(pt 109 12))
+		(line (pt 84 4)(pt 109 4))
+		(line (pt 113 8)(pt 168 8))
+		(line (pt 84 12)(pt 84 4))
+		(line (pt 109 4)(pt 113 8))
+		(line (pt 109 12)(pt 113 8))
+	)
+	(text "VCC" (rect 128 7 148 16)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect 0 144 168 160)
+	(text "INPUT" (rect 125 0 153 9)(font "Arial" (font_size 6)))
+	(text "inp[2]" (rect 5 0 33 10)(font "DejaVu Sans Condensed" ))
+	(pt 168 8)
+	(drawing
+		(line (pt 84 12)(pt 109 12))
+		(line (pt 84 4)(pt 109 4))
+		(line (pt 113 8)(pt 168 8))
+		(line (pt 84 12)(pt 84 4))
+		(line (pt 109 4)(pt 113 8))
+		(line (pt 109 12)(pt 113 8))
+	)
+	(text "VCC" (rect 128 7 148 16)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect 0 160 168 176)
+	(text "INPUT" (rect 125 0 153 9)(font "Arial" (font_size 6)))
+	(text "inp[3]" (rect 5 0 33 10)(font "DejaVu Sans Condensed" ))
+	(pt 168 8)
+	(drawing
+		(line (pt 84 12)(pt 109 12))
+		(line (pt 84 4)(pt 109 4))
+		(line (pt 113 8)(pt 168 8))
+		(line (pt 84 12)(pt 84 4))
+		(line (pt 109 4)(pt 113 8))
+		(line (pt 109 12)(pt 113 8))
+	)
+	(text "VCC" (rect 128 7 148 16)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect 0 176 168 192)
+	(text "INPUT" (rect 125 0 153 9)(font "Arial" (font_size 6)))
+	(text "inp[4]" (rect 5 0 33 10)(font "DejaVu Sans Condensed" ))
+	(pt 168 8)
+	(drawing
+		(line (pt 84 12)(pt 109 12))
+		(line (pt 84 4)(pt 109 4))
+		(line (pt 113 8)(pt 168 8))
+		(line (pt 84 12)(pt 84 4))
+		(line (pt 109 4)(pt 113 8))
+		(line (pt 109 12)(pt 113 8))
+	)
+	(text "VCC" (rect 128 7 148 16)(font "Arial" (font_size 6)))
+)
+(symbol
+	(rect 360 152 592 264)
+	(text "EnigmaGears" (rect 5 0 71 10)(font "Arial" ))
+	(text "inst" (rect 8 96 25 106)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "input[4..0]" (rect 0 0 49 10)(font "Arial" ))
+		(text "input[4..0]" (rect 21 27 70 37)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32)(line_width 3))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "gear_order[0..2][1..0]" (rect 0 0 103 10)(font "Arial" ))
+		(text "gear_order[0..2][1..0]" (rect 21 43 124 53)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48)(line_width 3))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "gear_pos[0..2][4..0]" (rect 0 0 96 10)(font "Arial" ))
+		(text "gear_pos[0..2][4..0]" (rect 21 59 117 69)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64)(line_width 3))
+	)
+	(port
+		(pt 232 32)
+		(output)
+		(text "output[4..0]" (rect 0 0 56 10)(font "Arial" ))
+		(text "output[4..0]" (rect 164 27 220 37)(font "Arial" ))
+		(line (pt 232 32)(pt 216 32)(line_width 3))
+	)
+	(drawing
+		(rectangle (rect 16 16 216 96))
+	)
+)
+(symbol
+	(rect 728 104 1008 216)
+	(text "GearControl" (rect 5 102 64 112)(font "Arial" ))
+	(text "inst4" (rect 8 6 31 16)(font "Arial" ))
+	(port
+		(pt 0 80)
+		(input)
+		(text "char_to_write[4..0]" (rect 0 0 90 10)(font "Arial" ))
+		(text "char_to_write[4..0]" (rect 21 75 111 85)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 3))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "confirm" (rect 0 0 37 10)(font "Arial" ))
+		(text "confirm" (rect 21 59 58 69)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "clk" (rect 0 0 14 10)(font "Arial" ))
+		(text "clk" (rect 21 43 35 53)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 280 24)
+		(output)
+		(text "display_chars[0..20][4..0]" (rect 0 0 126 10)(font "Arial" ))
+		(text "display_chars[0..20][4..0]" (rect 153 19 279 29)(font "Arial" ))
+		(line (pt 280 24)(pt 264 24)(line_width 3))
+	)
+	(port
+		(pt 280 64)
+		(output)
+		(text "gear_order_out[0..2][1..0]" (rect 0 0 125 10)(font "Arial" ))
+		(text "gear_order_out[0..2][1..0]" (rect 154 59 279 69)(font "Arial" ))
+		(line (pt 280 64)(pt 264 64)(line_width 3))
+	)
+	(port
+		(pt 280 80)
+		(output)
+		(text "gear_pos_out[0..2][4..0]" (rect 0 0 118 10)(font "Arial" ))
+		(text "gear_pos_out[0..2][4..0]" (rect 160 75 278 85)(font "Arial" ))
+		(line (pt 280 80)(pt 264 80)(line_width 3))
+	)
+	(drawing
+		(rectangle (rect 16 16 264 96))
+	)
+	(flipx)
+)
+(connector
+	(text "input[4..0]" (rect 234 176 283 186)(font "DejaVu Sans Condensed" ))
+	(pt 360 184)
+	(pt 224 184)
+	(bus)
+)
+(connector
+	(pt 224 120)
+	(pt 224 136)
+	(bus)
+)
+(connector
+	(pt 224 136)
+	(pt 224 152)
+	(bus)
+)
+(connector
+	(pt 224 152)
+	(pt 224 168)
+	(bus)
+)
+(connector
+	(pt 224 168)
+	(pt 224 184)
+	(bus)
+)
+(connector
+	(text "input[0]" (rect 168 112 204 122)(font "DejaVu Sans Condensed" ))
+	(pt 168 120)
+	(pt 224 120)
+)
+(connector
+	(text "input[1]" (rect 178 128 214 138)(font "DejaVu Sans Condensed" ))
+	(pt 168 136)
+	(pt 224 136)
+)
+(connector
+	(text "input[2]" (rect 178 144 214 154)(font "DejaVu Sans Condensed" ))
+	(pt 168 152)
+	(pt 224 152)
+)
+(connector
+	(text "input[3]" (rect 178 160 214 170)(font "DejaVu Sans Condensed" ))
+	(pt 168 168)
+	(pt 224 168)
+)
+(connector
+	(text "input[4]" (rect 178 176 214 186)(font "DejaVu Sans Condensed" ))
+	(pt 168 184)
+	(pt 224 184)
+)
+(connector
+	(text "output[4..0]" (rect 602 176 658 186)(font "DejaVu Sans Condensed" ))
+	(pt 592 184)
+	(pt 728 184)
+	(bus)
+)
+(connector
+	(pt 1008 184)
+	(pt 1040 184)
+	(bus)
+)
+(connector
+	(pt 1040 184)
+	(pt 1040 280)
+	(bus)
+)
+(connector
+	(pt 344 280)
+	(pt 344 216)
+	(bus)
+)
+(connector
+	(pt 344 216)
+	(pt 360 216)
+	(bus)
+)
+(connector
+	(pt 1008 168)
+	(pt 1064 168)
+	(bus)
+)
+(connector
+	(pt 1064 168)
+	(pt 1064 304)
+	(bus)
+)
+(connector
+	(pt 320 304)
+	(pt 320 200)
+	(bus)
+)
+(connector
+	(pt 320 200)
+	(pt 360 200)
+	(bus)
+)
+(connector
+	(text "gear_pos_out[0..2][4..0]" (rect 354 272 468 282)(font "DejaVu Sans Condensed" ))
+	(pt 1040 280)
+	(pt 344 280)
+	(bus)
+)
+(connector
+	(text "gear_order_out[0..2][1..0]" (rect 330 296 452 306)(font "DejaVu Sans Condensed" ))
+	(pt 1064 304)
+	(pt 320 304)
+	(bus)
+)
+(junction (pt 224 136))
+(junction (pt 224 152))
+(junction (pt 224 168))
+(junction (pt 224 184))

@@ -7,10 +7,10 @@ USE IEEE.NUMERIC_STD.ALL;
 USE WORK.MY_PACKAGE.ALL;
 ------------------------------------------------------------------------------
 ENTITY EnigmaGears IS
-	PORT(input: IN character_az;
+	PORT(input: IN INTEGER RANGE 0 TO 31;
 		gear_order: IN gear_indices;
 		gear_pos: IN gear_positions;
-		output: OUT character_az);
+		output: OUT INTEGER RANGE 0 TO 26);
 END;
 ------------------------------------------------------------------------------
 ARCHITECTURE arch OF EnigmaGears IS
@@ -30,16 +30,35 @@ ARCHITECTURE arch OF EnigmaGears IS
 							'I', 'S', 'R', 'B', 'L');
 	TYPE gear_array IS ARRAY(0 TO 3) OF gear;
 	CONSTANT gears: gear_array:=(I, II, III, reflector);
+	TYPE order_internal_type IS ARRAY(0 TO 2) OF INTEGER RANGE 0 TO 31;
+	SIGNAL order_internal: order_internal_type;
+	TYPE position_internal_type IS ARRAY(0 TO 2) OF INTEGER RANGE 0 TO 25;
+	SIGNAL position_internal: position_internal_type;
 BEGIN
-	output <= 
-		indexof(
-		indexof(
-		indexof(
-		gears(3)((CHARACTER'POS(gears(gear_order(2))
-		((CHARACTER'POS(gears(gear_order(1))
-		((CHARACTER'POS(gears(gear_order(0))
-		((CHARACTER'POS(input)-65+gear_pos(0))mod 26))-65+gear_pos(1))mod 26))-65+gear_pos(2))mod 26))-65+gear_pos(0))mod 26)
-		, gears(gear_order(2)), gear_pos(2))
-		, gears(gear_order(1)), gear_pos(1))
-		, gears(gear_order(0)), gear_pos(0));
+	order_internal <= (TO_INTEGER(UNSIGNED(gear_order(0))), TO_INTEGER(UNSIGNED(gear_order(1))), TO_INTEGER(UNSIGNED(gear_order(2))));
+	position_internal <= (TO_INTEGER(gear_pos(0)), TO_INTEGER(gear_pos(1)), TO_INTEGER(gear_pos(2)));
+	output <= 26 WHEN input > 25 ELSE
+		CHARACTER'POS(
+			indexof(
+				indexof(
+					indexof(
+						gears(3)(
+							(CHARACTER'POS(
+								gears(order_internal(2))
+								((CHARACTER'POS(
+									gears(order_internal(1))
+									((CHARACTER'POS(gears(
+										order_internal(0))
+										((input+position_internal(0))mod 26)
+										)-65+position_internal(1))mod 26)
+								)-65+position_internal(2))mod 26)
+							)-65+position_internal(0))mod 26
+						)
+						, gears(order_internal(2)), position_internal(2)
+					)
+					, gears(order_internal(1)), position_internal(1)
+				)
+				, gears(order_internal(0)), position_internal(0)
+			)
+		)-65;
 END;
