@@ -9,6 +9,8 @@ PACKAGE my_package IS
 	TYPE gear_indices IS ARRAY(0 TO 2) OF STD_LOGIC_VECTOR(1 DOWNTO 0);
 	TYPE gear_positions IS ARRAY(0 TO 2) OF UNSIGNED(4 DOWNTO 0);
 	
+	TYPE logical_gear IS ARRAY(0 TO 25) OF STD_LOGIC_VECTOR(4 DOWNTO 0);
+	
 	TYPE logical_display_chars IS ARRAY (0 TO 20) OF STD_LOGIC_VECTOR(4 DOWNTO 0);
 	
 	SUBTYPE character_az IS CHARACTER RANGE 'A' TO 'Z';
@@ -17,8 +19,15 @@ PACKAGE my_package IS
 	
 	TYPE string_az IS ARRAY (0 TO 20) OF character_az;
 	TYPE az_disp_logic_arr IS ARRAY (0 TO 20) OF CHARACTER RANGE 'A' TO '[';
+	
+	CONSTANT default_plugboard: logical_gear:= ("00000", "00001", "00010", "00011", "00100", "00101",
+															  "00110", "00111", "01000", "01001", "01010", "01011",
+															  "01100", "01101", "01110", "01111", "10000", "10001", 
+															  "10010", "10011", "10100", "10101", "10110", "10111",
+															  "11000", "11001");
 
 	FUNCTION indexof (char : character_az; arr : gear; position : PositionIndex) RETURN character_az;
+	FUNCTION logical_indexof (char : character_az; arr : logical_gear; position : PositionIndex) RETURN character_az;
 END;
 
 PACKAGE BODY my_package IS
@@ -28,6 +37,17 @@ PACKAGE BODY my_package IS
 		FOR i IN arr'range LOOP
 			IF arr((i+position)mod 26) = char THEN
 				result := CHARACTER'VAL(i+position+65);
+				EXIT;
+				END IF;
+		END LOOP;
+		RETURN result;
+	END FUNCTION;
+	FUNCTION logical_indexof (char : character_az; arr : logical_gear; position : PositionIndex) RETURN character_az IS
+		VARIABLE result: character_az := 'A';
+	BEGIN
+		FOR i IN arr'range LOOP
+			IF arr((i+position)mod 26) = STD_LOGIC_VECTOR(TO_UNSIGNED(CHARACTER'POS(char)-65, 5)) THEN
+				result := CHARACTER'VAL((i+position)MOD 26 + 65);
 				EXIT;
 				END IF;
 		END LOOP;

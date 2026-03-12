@@ -10,6 +10,7 @@ ENTITY EnigmaGears IS
 	PORT(input: IN INTEGER RANGE 0 TO 31;
 		gear_order: IN gear_indices;
 		gear_pos: IN gear_positions;
+		plugboard: IN logical_gear;
 		output: OUT INTEGER RANGE 0 TO 26);
 END;
 ------------------------------------------------------------------------------
@@ -39,26 +40,27 @@ BEGIN
 	position_internal <= (TO_INTEGER(gear_pos(0)), TO_INTEGER(gear_pos(1)), TO_INTEGER(gear_pos(2)));
 	output <= 26 WHEN input > 25 ELSE
 		CHARACTER'POS(
-			indexof(
+			logical_indexof(
 				indexof(
 					indexof(
-						gears(3)(
-							(CHARACTER'POS(
-								gears(order_internal(2))
-								((CHARACTER'POS(
-									gears(order_internal(1))
-									((CHARACTER'POS(gears(
-										order_internal(0))
-										((input+position_internal(0))mod 26)
-										)-65+position_internal(1))mod 26)
-								)-65+position_internal(2))mod 26)
-							)-65+position_internal(0))mod 26
+						indexof(
+							gears(3)(
+								(CHARACTER'POS(
+									gears(order_internal(2))
+									((CHARACTER'POS(
+										gears(order_internal(1))
+										((CHARACTER'POS(
+											gears(order_internal(0))
+											((TO_INTEGER(UNSIGNED(plugboard(input)))+position_internal(0))mod 26)
+											)-65+position_internal(1))mod 26)
+									)-65+position_internal(2))mod 26)
+								)-65+position_internal(0))mod 26
+							)
+							, gears(order_internal(2)), position_internal(2)
 						)
-						, gears(order_internal(2)), position_internal(2)
+						, gears(order_internal(1)), position_internal(1)
 					)
-					, gears(order_internal(1)), position_internal(1)
-				)
-				, gears(order_internal(0)), position_internal(0)
-			)
+					, gears(order_internal(0)), position_internal(0)
+				), plugboard, 0)
 		)-65;
 END;
