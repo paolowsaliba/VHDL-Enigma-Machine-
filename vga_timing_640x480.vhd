@@ -66,7 +66,8 @@ begin
     end if;
   end process;
 
-  video_on <= '1' when (to_integer(h_cnt) < H_VISIBLE and to_integer(v_cnt) < V_VISIBLE) else '0';
+  video_on <= '1' when (to_integer(h_cnt) < H_VISIBLE and
+                      to_integer(v_cnt) < V_VISIBLE) else '0';
 
   pix_x <= h_cnt;
   pix_y <= v_cnt;

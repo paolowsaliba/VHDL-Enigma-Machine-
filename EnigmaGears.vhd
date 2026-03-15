@@ -7,11 +7,11 @@ USE IEEE.NUMERIC_STD.ALL;
 USE WORK.MY_PACKAGE.ALL;
 ------------------------------------------------------------------------------
 ENTITY EnigmaGears IS
-	PORT(input: IN INTEGER RANGE 0 TO 31;
+	PORT(input: IN STD_LOGIC_VECTOR(4 DOWNTO 0);
 		gear_order: IN gear_indices;
 		gear_pos: IN gear_positions;
 		plugboard: IN logical_gear;
-		output: OUT INTEGER RANGE 0 TO 26);
+		output: OUT STD_LOGIC_VECTOR(4 DOWNTO 0));
 END;
 ------------------------------------------------------------------------------
 ARCHITECTURE arch OF EnigmaGears IS
@@ -38,7 +38,8 @@ ARCHITECTURE arch OF EnigmaGears IS
 BEGIN
 	order_internal <= (TO_INTEGER(UNSIGNED(gear_order(0))), TO_INTEGER(UNSIGNED(gear_order(1))), TO_INTEGER(UNSIGNED(gear_order(2))));
 	position_internal <= (TO_INTEGER(gear_pos(0)), TO_INTEGER(gear_pos(1)), TO_INTEGER(gear_pos(2)));
-	output <= 26 WHEN input > 25 ELSE
+	output <= "11010" WHEN TO_INTEGER(UNSIGNED(input)) > 25 ELSE
+		STD_LOGIC_VECTOR(TO_UNSIGNED(
 		CHARACTER'POS(
 			logical_indexof(
 				indexof(
@@ -51,7 +52,7 @@ BEGIN
 										gears(order_internal(1))
 										((CHARACTER'POS(
 											gears(order_internal(0))
-											((TO_INTEGER(UNSIGNED(plugboard(input)))+position_internal(0))mod 26)
+											((TO_INTEGER(UNSIGNED(plugboard(TO_INTEGER(UNSIGNED(input)))))+position_internal(0))mod 26)
 											)-65+position_internal(1))mod 26)
 									)-65+position_internal(2))mod 26)
 								)-65+position_internal(0))mod 26
@@ -62,5 +63,5 @@ BEGIN
 					)
 					, gears(order_internal(0)), position_internal(0)
 				), plugboard, 0)
-		)-65;
+		)-65, 5));
 END;
