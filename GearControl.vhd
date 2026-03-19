@@ -97,7 +97,6 @@ BEGIN
 			-- Plugboard Select
 			ELSIF mode = S_PLUGBOARD AND confirm_prev = '1' AND confirm = '0' AND TO_INTEGER(UNSIGNED(plugboard_in)) < 26 THEN
 				plugboard(plugboard_write_position) <= plugboard_in;
-				plugboard((plugboard_write_position+13)MOD 26) <= STD_LOGIC_VECTOR(TO_UNSIGNED((plugboard_write_position+13)MOD 26, 5));
 				IF plugboard_write_position < 25 THEN
 					plugboard_write_position <= plugboard_write_position + 1;
 				ELSE
